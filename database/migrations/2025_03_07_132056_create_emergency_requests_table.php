@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('emergency_requests', function (Blueprint $table) {
-            $table->EmrRequest_id();
+            $table->id();
             $table->text('description');
             $table->string('location');
             $table->string('phone');
-            $table->string('status')->default('pending');
-            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('mechanic_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->integer('status')->default(1);
             $table->timestamp('accepted_at')->nullable();
             $table->timestamps();
         });

@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('chats', function (Blueprint $table) {
-            $table->chat_id();
-            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('mechanic_id')->constrained()->cascadeOnDelete();
+            $table->id();
+        
             $table->timestamps();
         });
     }

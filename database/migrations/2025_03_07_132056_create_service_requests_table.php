@@ -1,10 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-use function PHPSTORM_META\type;
 
 return new class extends Migration
 {
@@ -14,9 +11,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('service_requests', function (Blueprint $table) {
-            $table->ServiceRequest_id();
+            $table->id();
             $table->text('description');
-            $table->varchar('type');
+            $table->string('type'); // Changed from varchar to string
             $table->enum('status', ['pending', 'accepted', 'completed', 'cancelled'])->default('pending');
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->foreignId('mechanic_id')->nullable()->constrained()->cascadeOnDelete();

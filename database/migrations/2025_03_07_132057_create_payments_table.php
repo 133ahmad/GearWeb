@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->payment_id();
+            $table->id();
             $table->foreignId('service_request_id')->constrained()->cascadeOnDelete();
             $table->float('amount');
             $table->string('status')->default('pending');
