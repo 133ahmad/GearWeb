@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('status')->default(1);
             $table->integer('experience')->nullable();
             $table->float('rating')->nullable();
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
             $table->timestamps();
         });
     }

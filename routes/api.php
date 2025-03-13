@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Customer;
 use App\Models\Mechanic;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\EmergencyRequestController;
+
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
@@ -18,4 +20,5 @@ Route::post('service-requests', [ServiceRequestController::class, 'store']);
 Route::get('service-requests/{id}', [ServiceRequestController::class, 'show']);
 Route::put('service-requests/{id}', [ServiceRequestController::class, 'update']);
 Route::delete('service-requests/{id}', [ServiceRequestController::class, 'destroy']);
+Route::post('/emergency/request', [EmergencyRequestController::class, 'findNearestMechanic']);
 
