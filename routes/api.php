@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\MessageController;
 
 
 Route::post('register', [AuthController::class, 'register']);
@@ -31,3 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/appointments/{id}/status', [AppointmentController::class, 'updateStatus']);
 });
 
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/messages', [MessageController::class, 'sendMessage']);
+    Route::get('/messages/{mechanic_id}', [MessageController::class, 'getMessages']);
+});
