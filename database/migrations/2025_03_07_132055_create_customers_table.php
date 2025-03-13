@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->date('RegistrationDate')->nullable();
             $table->integer('status')->default(1);
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }

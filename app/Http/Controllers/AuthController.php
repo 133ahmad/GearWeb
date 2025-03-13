@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
+
 class AuthController extends Controller
 {
     // Register new user (Mechanic or Customer)
@@ -30,11 +31,15 @@ class AuthController extends Controller
             $user = Mechanic::create([
                 'phone' => $request->phone,
                 'password' => bcrypt($request->password),
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
             ]);
         } elseif ($request->user_type == 'customer') {
             $user = Customer::create([
                 'phone' => $request->phone,
                 'password' => bcrypt($request->password),
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
             ]);
         }
 

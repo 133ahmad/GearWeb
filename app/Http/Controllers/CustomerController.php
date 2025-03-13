@@ -28,6 +28,8 @@ class CustomerController extends Controller
             'address' => 'nullable|string|max:255',
             'RegistrationDate' => 'nullable|date',
             'status' => 'nullable|integer|in:0,1',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $customer = Customer::create($validated);
@@ -63,6 +65,8 @@ class CustomerController extends Controller
             'address' => 'nullable|string|max:255',
             'RegistrationDate' => 'nullable|date',
             'status' => 'nullable|integer|in:0,1',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $customer->update($validated);
@@ -81,5 +85,27 @@ class CustomerController extends Controller
 
         $customer->delete();
         return response()->json(['message' => 'Customer deleted successfully']);
+    }
+
+    /**
+     * Update Customer Location.
+     */
+    public function updateLocation(Request $request)
+    {
+        $request->validate([
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        $customer = Customer::find(auth()->id()); // Assuming authentication is used
+        if (!$customer) {
+            return response()->json(['message' => 'Customer not found'], 404);
+        }
+        $customer->update([
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ]);
+
+        return response()->json(['message' => 'Location updated successfully.']);
     }
 }
