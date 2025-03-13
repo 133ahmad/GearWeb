@@ -4,14 +4,12 @@ namespace App\Events;
 use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class NewMessageEvent implements ShouldBroadcast
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets; // Removed SerializesModels
 
     public $message;
 
